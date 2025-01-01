@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+    <h1>Welcome, {{ user.username }}</h1>
+
+    <p>Click the button below to upload your receipt:</p>
+
+    <!-- "Upload Receipt" 버튼 -->
+    <a href="{% url 'upload_receipt' %}">
+        <button>Upload Receipt</button>
+    </a>
+
+    <!-- 업로드된 영수증이 있을 경우 보여줌 -->
+    {% if user.receipt and user.receipt.receipt_image %}
+        <h3>Your Uploaded Receipt:</h3>
+        <img src="{{ user.receipt.receipt_image.url }}" alt="Receipt Image" style="max-width: 200px;">
+    {% else %}
+        <p>No receipt uploaded yet.</p>
+    {% endif %}
+
+    <br><br>
+    <!-- 로그아웃 링크 -->
+    <a href="{% url 'logout' %}">Logout</a>
+</body>
+</html>
