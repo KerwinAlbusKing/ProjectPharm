@@ -23,6 +23,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('accounts.urls')), #accounts 앱의 URLs 포함
     path('', include('uploadReceipt.urls')),
+    path('', include('tesseractOCR.urls')),
+    path('', include('manageData.urls')),
 ]
 
 if settings.DEBUG:

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insurance Items</title>
+</head>
+<body>
+    <h1>Insurance Items</h1>
+    <a href="{% url 'item_create' %}">Add New Item</a>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>보험코드</th>
+                <th>품명</th>
+                <th>규격</th>
+                <th>수량</th>
+                <th>단가</th>
+                <th>금액</th>
+                <th>유효기간</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+            <tr>
+                <td>{{ item.insurance_code }}</td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.specification }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>{{ item.unit_price }}</td>
+                <td>{{ item.total_price }}</td>
+                <td>{{ item.expiry_date }}</td>
+                <td>
+                    <a href="{% url 'item_update' item.insurance_code %}">Edit</a> |
+                    <a href="{% url 'item_delete' item.insurance_code %}">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'home' %}">Go home</a>
+</body>
+</html>

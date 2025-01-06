@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OCR Result</title>
+</head>
+<body>
+    <h1>OCR Result</h1>
+    <pre>{{ result_text }}</pre>
+
+    {% if digit_numbers %}
+        <h3>Extracted 13-digit Numbers:</h3>
+        <ul>
+            {% for number in digit_numbers %}
+                <li>{{ number }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <a href="{% url 'home' %}">Go home</a>
+</body>
+</html>
