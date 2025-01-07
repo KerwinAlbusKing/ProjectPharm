@@ -15,7 +15,7 @@ def ocr_view(request):
     if image_files:
         image_path = os.path.join(temp_folder, image_files[0])  # 첫 번째 이미지 처리
         pytesseract.pytesseract.tesseract_cmd = 'C:/Program Files/Tesseract-OCR/tesseract.exe'
-        config = '-l kor+eng --oem 3 --psm 6'
+        config = '-l kor+eng --oem 3 --psm 1'
         # -l kor+eng : 언어 설정, 한국어와 영어를 동시에 처리하도록 설정.
         # --oem : OCR 엔진의 작동 모드를 설정
             # 0 : Legacy Tesseract-Only 엔진 사용.
@@ -34,9 +34,9 @@ def ocr_view(request):
             raw_text = pytesseract.image_to_string(img, config=config)
 
             # 13자리 숫자 추출
-            digit_numbers = extract_13_digit_numbers(raw_text)
+            digit_numbers = extract_9_digit_numbers(raw_text)
 
-            result_text = f"OCR Result:\n{raw_text}\n\nExtracted 13-digit numbers:\n{digit_numbers}"
+            result_text = f"OCR Result:\n{raw_text}\n\nExtracted 9-digit numbers:\n{digit_numbers}"
         except Exception as e:
             result_text = f"Error processing image: {str(e)}"
     else:
@@ -44,7 +44,7 @@ def ocr_view(request):
 
     return render(request, 'tesseractOCR/ocr_result.html', {'result_text': result_text, 'digit_numbers': digit_numbers})
 
-def extract_13_digit_numbers(text):
+def extract_9_digit_numbers(text):
     import re
-    pattern = r'\b\d{13}\b'
+    pattern = r'\b\d{9}\b'
     return re.findall(pattern, text)

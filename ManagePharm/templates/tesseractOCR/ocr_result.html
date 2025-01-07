@@ -7,10 +7,10 @@
 </head>
 <body>
     <h1>OCR Result</h1>
-    <pre>{{ result_text }}</pre>
+    <!--<pre>{{ result_text }}</pre>-->
 
     {% if digit_numbers %}
-        <h3>Extracted 13-digit Numbers:</h3>
+        <h3>Extracted Insurance Numbers:</h3>
         <ul>
             {% for number in digit_numbers %}
                 <li>{{ number }}</li>
